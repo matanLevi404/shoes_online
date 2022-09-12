@@ -1,0 +1,60 @@
+<mat-drawer-container>
+  <div class="section">
+    <mat-toolbar>
+      <div class="sidebar-opener flex-item">
+        <button
+          class="mini-fab"
+          mat-mini-fab
+          color="primary"
+          aria-label="Example icon button with a menu icon"
+          (click)="toggleDrawer()"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+
+      <app-gender-options class="flex-item"></app-gender-options>
+
+      <img
+        class="flex-item"
+        src="https://shoesonline.co.il/wp-content/themes/shoesolnew/images/new_logo.jpg"
+        alt=""
+      />
+
+      <div class="icons flex-item">
+        <a
+          (click)="goToAddProduct()"
+          *ngIf="isAdmin"
+          matTooltip="Add a new product"
+        >
+          <p>
+            <mat-icon matBadgeColor="primary" MatBadgeSize="small"
+              ><span>add_circle</span></mat-icon
+            >
+          </p>
+        </a>
+        <a
+          (click)="toggleBadgeVisibility()"
+          *ngIf="!isAdmin"
+          matTooltip="Go see your cart"
+        >
+          <p>
+            <mat-icon
+              [matBadge]="badgeNum"
+              matBadgeColor="primary"
+              MatBadgeSize="small"
+              [matBadgeHidden]="false"
+              (click)="goToCart()"
+              ><span>shopping_cart</span></mat-icon
+            >
+          </p>
+        </a>
+        <a (click)="logout()" matTooltip="Logout">
+          <mat-icon>
+            <span class="material-symbols-outlined"> logout </span></mat-icon
+          >
+        </a>
+      </div>
+    </mat-toolbar>
+  </div>
+</mat-drawer-container>

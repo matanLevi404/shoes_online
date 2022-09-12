@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.section {
+  width: 70vw;
+  margin: 10px auto 0px auto;
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  padding: 0 16px;
+  justify-content: space-between;
+  grid-gap: 8px;
+  /* border: 0.5px solid rgb(203, 202, 202); */
+}
+
+/* ------------- media queries ------------ */
+@media screen and (max-width: 950px) {
+  .section {
+    width: 100vw;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .section {
+    width: 100vw;
+    grid-template-columns: 49% 49%;
+  }
+}
+/* ------------- media queries ------------ */

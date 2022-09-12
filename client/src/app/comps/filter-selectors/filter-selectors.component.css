@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.section {
+  width: 70vw;
+  margin: 0 auto;
+  border-bottom: 0.5px solid rgb(203, 202, 202);
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+}
+
+mat-form-field {
+  font-size: 11px;
+  margin: 10px 20px 0 0;
+}
+
+button {
+  width: 100px;
+  letter-spacing: 2px;
+  margin-left: auto;
+}
+
+/* ------------- media queries ------------ */
+@media screen and (max-width: 950px) {
+  .section {
+    width: 100vw;
+  }
+
+  mat-form-field {
+    font-size: 9px;
+    width: 20%;
+    margin: 10px 10px 0 0;
+  }
+
+  button {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .section {
+    width: 100%;
+  }
+
+  mat-form-field {
+    font-size: 10px;
+    width: 24%;
+  }
+
+  button {
+    font-size: 10px;
+    width: 25px;
+    margin: 0;
+  }
+}
+/* ------------- media queries ------------ */

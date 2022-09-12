@@ -1,0 +1,23 @@
+<div class="section navbar">
+  <app-nav-options></app-nav-options>
+
+  <div class="all-search-container">
+    <div class="search-bar">
+      <a>
+        <mat-icon><span class="material-icons"> search </span></mat-icon>
+      </a>
+      <input type="text" placeholder="Search..." #searchInp />
+      <a>
+        <mat-icon><span class="material-icons"> clear </span></mat-icon>
+      </a>
+    </div>
+    <button
+      class="search-btn"
+      mat-raised-button
+      color="primary"
+      (click)="moveToSearchRoute(searchInp)"
+    >
+      Search
+    </button>
+  </div>
+</div>

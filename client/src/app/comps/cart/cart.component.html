@@ -1,0 +1,119 @@
+<div class="section">
+  <div class="part1">
+    <table mat-table [dataSource]="cart" class="mat-elevation-z8">
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Image Column -->
+      <ng-container matColumnDef="img">
+        <th mat-header-cell *matHeaderCellDef>img.</th>
+        <td mat-cell *matCellDef="let element">
+          <img width="75" height="65" [src]="element.image" alt="" />
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">
+          <strong>{{ element.name }}</strong>
+        </td>
+      </ng-container>
+
+      <!-- Brand Column -->
+      <ng-container matColumnDef="brand">
+        <th mat-header-cell *matHeaderCellDef>Brand</th>
+        <td mat-cell *matCellDef="let element">{{ element.brand }}</td>
+      </ng-container>
+
+      <!-- Gender Column -->
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef>Gender</th>
+        <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+      </ng-container>
+
+      <!-- Color Column -->
+      <ng-container matColumnDef="color">
+        <th mat-header-cell *matHeaderCellDef>Color</th>
+        <td mat-cell *matCellDef="let element">{{ element.color }}</td>
+      </ng-container>
+
+      <!-- Size Column -->
+      <ng-container matColumnDef="size">
+        <th mat-header-cell *matHeaderCellDef>Size</th>
+        <td mat-cell *matCellDef="let element">{{ element.size }}</td>
+      </ng-container>
+
+      <!-- Amount Column -->
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef>Amount</th>
+        <td mat-cell *matCellDef="let element">
+          <strong>x{{ element.amount }}</strong>
+        </td>
+      </ng-container>
+
+      <!-- Price Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let element">
+          <strong class="price">{{ element.price }}$</strong>
+        </td>
+      </ng-container>
+
+      <!-- Price Column -->
+      <ng-container matColumnDef="del">
+        <th mat-header-cell *matHeaderCellDef>Del</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-raised-button
+            color="accent"
+            class="del"
+            (click)="removeItemFromCart(element.id, element.size)"
+          >
+            <mat-icon>remove</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="cartDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: cartDisplayedColumns"></tr>
+    </table>
+    <button
+      mat-raised-button
+      color="warn"
+      class="del-all"
+      (click)="emptyTheCart()"
+    >
+      Delete All
+    </button>
+  </div>
+
+  <div class="part2">
+    <mat-card>
+      <!--  -->
+      <mat-card-subtitle
+        ><strong style="font-size: 18px"> Over All:</strong>
+      </mat-card-subtitle>
+      <mat-card-subtitle
+        ><strong> SubTotal: {{ subTotalPrice }}$</strong>
+      </mat-card-subtitle>
+      <mat-card-subtitle
+        ><strong> Tax: {{ cart.length == 0 ? "0" : "15$" }}</strong>
+      </mat-card-subtitle>
+      <mat-card-title
+        >Total: {{ cart.length == 0 ? 0 : subTotalPrice + 15 }}$</mat-card-title
+      >
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          style="width: 150px"
+          [disabled]="cart.length == 0 ? true : false"
+          (click)="moveToCheckout()"
+        >
+          Checkout
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

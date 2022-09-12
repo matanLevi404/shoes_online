@@ -1,0 +1,162 @@
+admin:
+    matanLeviAdmin
+    0$mAtAn$24
+
+users:
+    #2:
+        kingNothing
+        SUMsumOpen
+    
+    #3:
+        sharonEll
+        11841279
+    
+    #4:
+        danLevi558
+        1956DAN
+
+
+
+<div class="signup-form">
+  <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{ !isLinear ? "Enable linear mode" : "Disable linear mode" }}
+  </button> -->
+
+  <!-- FIRST FORM GROUP - STEP 1 -->
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out </ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>ID</mat-label>
+          <input matInput [formControlName]="'ID'" />
+          <mat-error *ngIf="firstFormGroup.get('ID').hasError('required')"
+            >this input is required</mat-error
+          >
+          <mat-error *ngIf="firstFormGroup.get('ID').hasError('minlength')"
+            >ID number should be 9 digits</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input matInput [formControlName]="'username'" />
+          <mat-error *ngIf="firstFormGroup.get('username').hasError('required')"
+            >this input is required</mat-error
+          >
+          <mat-error
+            *ngIf="firstFormGroup.get('username').hasError('minlength')"
+            >username should be atleast 5 charcters</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Choose password</mat-label>
+          <input
+            matInput
+            [formControlName]="'password'"
+            [type]="hide ? 'password' : 'text'"
+          />
+          <mat-error *ngIf="firstFormGroup.get('password').hasError('required')"
+            >this input is required</mat-error
+          >
+          <!-- <mat-error *ngIf="form.get('password').hasError('pattern')"
+          >password must contain a-z/A-Z/0-9 with a special charcter, dont start
+          with a number</mat-error
+        > -->
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Confirm password</mat-label>
+          <input
+            matInput
+            [formControlName]="'confirmPassword'"
+            [type]="hide ? 'password' : 'text'"
+          />
+
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-error *ngIf="firstFormGroup.errors?.['valuesDoNOtMatch']"
+          >passwords do not match</mat-error
+        >
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <!-- FIRST FORM GROUP - STEP 1 -->
+
+    <!-- SECOND FORM GROUP - STEP 2 -->
+
+    <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+      <form [formGroup]="secondFormGroup">
+        <mat-form-field appearance="fill">
+          <mat-label>City</mat-label>
+          <input matInput [formControlName]="'city'" />
+          <mat-error *ngIf="secondFormGroup.get('city').hasError('required')"
+            >this input is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Street</mat-label>
+          <input matInput [formControlName]="'street'" />
+          <mat-error *ngIf="secondFormGroup.get('street').hasError('required')"
+            >this input is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput [formControlName]="'name'" />
+          <mat-error *ngIf="secondFormGroup.get('name').hasError('required')"
+            >this input is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Last Name</mat-label>
+          <input matInput [formControlName]="'lastName'" />
+          <mat-error
+            *ngIf="secondFormGroup.get('lastName').hasError('required')"
+            >this input is required</mat-error
+          >
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- SECOND FORM GROUP - STEP 2 -->
+
+    <!-- WELCOME USER  - STEP 3 -->
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

@@ -1,0 +1,7 @@
+<div class="section">
+  <app-product
+    [isAdmin]="isAdmin"
+    *ngFor="let p of products"
+    [productDetails]="p"
+  ></app-product>
+</div>

@@ -1,0 +1,25 @@
+<mat-card class="example-card">
+  <div class="higher">
+    <img
+      mat-card-image
+      src="https://www.poenta.co.il/wp-content/uploads/2022/03/%D7%93%D7%A4%D7%A0%D7%94-%D7%A4%D7%95%D7%90%D7%A0%D7%98%D7%94-500-865.png"
+      alt="Photo of a Shiba Inu"
+    />
+
+    <mat-card-subtitle
+      >Avaliable products in our store -
+      {{ userData.productsAmount }}</mat-card-subtitle
+    >
+
+    <mat-card-subtitle
+      >Number of orders submitted in our store -
+      {{ userData.ordersAmount }}</mat-card-subtitle
+    >
+    <mat-card-content>
+      <mat-card-subtitle>Notification:</mat-card-subtitle>
+      <p>
+        {{ userData.err ? userData.err : userData.msg }}
+      </p>
+    </mat-card-content>
+  </div>
+</mat-card>

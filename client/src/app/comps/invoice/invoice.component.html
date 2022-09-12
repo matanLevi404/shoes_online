@@ -1,0 +1,133 @@
+<div class="box" id="invoiceBody" #invoiceBody>
+  <div class="heading-section">
+    <div class="title">
+      <div class="invoice"><span>INVOICE</span></div>
+      <div class="brand"><span>shoesOnline</span></div>
+    </div>
+    <div class="sub-title">
+      <div class="bill">
+        <div class="bill-to">
+          BILL TO:&nbsp;{{
+            checkoutInfo.client[0]["name"] +
+              " " +
+              checkoutInfo.client[0]["lastname"]
+          }}
+        </div>
+        <div class="company-name">COMPANY NAME</div>
+        <div class="address">
+          {{
+            checkoutInfo.client[0]["city"] +
+              " " +
+              checkoutInfo.client[0]["street"]
+          }}
+        </div>
+      </div>
+      <div class="details">
+        <div class="invoice-details">Invoice Details</div>
+        <div class="invoice-date">
+          Invoice Date: {{ checkoutInfo.orderDate.slice(0, 10) }}
+        </div>
+        <div class="due-date">Due Date: {{ checkoutInfo.dueDate }}</div>
+        <div class="invoice-num">Invoice No.:#{{ checkoutInfo.orderId }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="table-section">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="itemDescriptions">
+        <th mat-header-cell *matHeaderCellDef>Item Description</th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px">
+          <span style="font-weight: 600">
+            {{ element.itemDescriptions.name }}</span
+          >
+          <br />
+          {{ element.itemDescriptions.brand }}
+
+          {{
+            element.itemDescriptions.color +
+              " size: " +
+              element.itemDescriptions.size
+          }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="unitPrice">
+        <th mat-header-cell *matHeaderCellDef>Unit Price</th>
+        <td mat-cell *matCellDef="let element">{{ element.unitPrice }}.00</td>
+      </ng-container>
+
+      <ng-container matColumnDef="qty">
+        <th mat-header-cell *matHeaderCellDef>Qty</th>
+        <td mat-cell *matCellDef="let element">{{ element.qty }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef>Amount</th>
+        <td mat-cell *matCellDef="let element">{{ element.amount }}.00</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  <div class="stats-section">
+    <div class="right">
+      <div class="sub-total">Sub Total:</div>
+      <div class="tax">Tax:</div>
+    </div>
+    <div class="left">
+      <div class="subtotal-price">
+        <span>{{ checkoutInfo.subTotal }}.00</span>
+      </div>
+      <div class="tax-price"><span>15.00</span></div>
+    </div>
+  </div>
+  <div class="payment-info-section">
+    <div class="grand-total">
+      <div class="payment-info-title">Payment Info:</div>
+      <div class="grand-total-title"><span>GRAND TOTAL:</span></div>
+      <div class="grand-total-price">
+        <span>{{ checkoutInfo.total }}.00</span>
+      </div>
+    </div>
+    <div class="payment-info">
+      <div class="payment-info-left">
+        <div class="account">Account id:</div>
+        <div class="a/c-name">A/c Name:</div>
+        <div class="bank-details">Credit-Card:</div>
+      </div>
+      <div class="payment-info-right">
+        <div class="customer-info">{{ checkoutInfo.client[0].id }}</div>
+        <div class="customer-info">{{ checkoutInfo.client[0].username }}</div>
+        <div class="customer-info">
+          ****-****-****-{{ checkoutInfo.digits }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="terms-conditions-section">
+    <div class="terms">
+      <span class="terms-title">TERMS & CONDITION</span>
+      <span class="terms-details"
+        >Lorem ipsum dolor sit amet consectetur <br />
+        adipisicing elit. Ducimus possimus modi, non <br />
+        sequi earum laboriosam doloremque libero sapiente
+      </span>
+    </div>
+    <div class="signature-title"><span>Signature:</span></div>
+  </div>
+  <div class="signature">
+    <img [src]="signatureSrc" alt="" />
+  </div>
+</div>
+
+<div class="order-msg">
+  <h2>Your Order is on its way !!</h2>
+  <div>
+    <span>If you wish for the receipt click here: </span>
+    <button (click)="makePDF()">download</button>
+  </div>
+  <button mat-raised-button color="primary" (click)="backToShop()">
+    Back To Shop
+  </button>
+</div>

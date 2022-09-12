@@ -1,0 +1,13 @@
+.higher {
+  width: 90%;
+  height: 336.644px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+
+mat-card-subtitle {
+  font-size: 1rem;
+  color: #000;
+}

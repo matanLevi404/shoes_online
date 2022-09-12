@@ -1,0 +1,15 @@
+.panel {
+  width: 30%;
+}
+
+.form {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+
+.goTo {
+  margin-top: 5px;
+}

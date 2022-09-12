@@ -1,0 +1,33 @@
+.higher {
+  width: 90%;
+  height: 336.644px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+
+mat-grid-list {
+  margin: 20px 0 30px 0;
+}
+
+.tile {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.img-1 {
+  background-image: url("https://cdn.shopify.com/s/files/1/0503/0779/3054/products/106CP0501537_32a8aaf6-aea9-495c-9764-bf6b2c300e08_720x.jpg?v=1643880173");
+}
+
+.img-2 {
+  background-image: url("https://assets.adidas.com/images/w_600,f_auto,q_auto/4e894c2b76dd4c8e9013aafc016047af_9366/Superstar_Shoes_White_FV3284_01_standard.jpg");
+}
+
+.img-3 {
+  background-image: url("https://cdn.shopify.com/s/files/1/0472/9123/6517/products/Classic_Leather_White_49803_01_standard_720x.jpg?v=1628587678");
+}
+
+.img-4 {
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwybeO-oj45dSKYj7gCjSIacmemYpY7D9peA&usqp=CAU");
+}

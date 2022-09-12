@@ -1,0 +1,8 @@
+<app-shopping-logo [drawer]="drawer"></app-shopping-logo>
+<app-shopping-navbar></app-shopping-navbar>
+<mat-drawer #drawer class="example-sidenav" mode="side">
+  <app-side-nav [drawerFromShoppingPage]="drawer"></app-side-nav>
+</mat-drawer>
+<app-filter-selectors></app-filter-selectors>
+<app-product-container *ngIf="!cartOrProductsDisplay"></app-product-container>
+<app-cart *ngIf="cartOrProductsDisplay"></app-cart>

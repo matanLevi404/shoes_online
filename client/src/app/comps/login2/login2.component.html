@@ -1,0 +1,72 @@
+<form action="" [formGroup]="form">
+  <mat-card-header>
+    <mat-card-title>
+      <span> Hello {{ userData.username }} </span>
+      <span
+        >{{
+          userData.username == "Guest" ? "Please login or register" : "you can"
+        }}
+        /</span
+      ></mat-card-title
+    >
+
+    <mat-card-subtitle
+      ><button
+        mat-raised-button
+        color="primary"
+        [disabled]="!userData.hasSession"
+        (click)="onResumeOrStartClick()"
+      >
+        {{ userData.hasCart ? "Resume" : "Start" }} Shopping
+      </button></mat-card-subtitle
+    >
+  </mat-card-header>
+
+  <mat-card-subtitle>Registered?</mat-card-subtitle>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Username</mat-label>
+    <input matInput [formControlName]="'username'" />
+    <mat-error *ngIf="this.form.get('username').hasError('required')"
+      >This input is required</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your password</mat-label>
+    <input
+      matInput
+      [formControlName]="'password'"
+      [type]="hide ? 'password' : 'text'"
+    />
+    <mat-error *ngIf="this.form.get('password').hasError('required')"
+      >This input is required</mat-error
+    >
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+    >
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-error *ngIf="errorMsg">Wrong username or Password</mat-error>
+  <button
+    type="button"
+    (click)="onLoginSubmit()"
+    class="login"
+    mat-raised-button
+    color="primary"
+  >
+    Login
+  </button>
+  <button
+    class="signup"
+    mat-raised-button
+    color="accent"
+    (click)="moveToSignUp()"
+  >
+    Sign up
+  </button>
+</form>

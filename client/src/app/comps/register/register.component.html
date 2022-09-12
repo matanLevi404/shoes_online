@@ -1,0 +1,205 @@
+<app-heading></app-heading>
+
+<div class="signup-form">
+  <!-- FIRST FORM GROUP - STEP 1 -->
+  <mat-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>STEP - 1</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>ID</mat-label>
+          <input matInput formControlName="ID" placeholder="ID" required />
+          <mat-error *ngIf="this.firstFormGroup.get('ID').hasError('required')"
+            >This input is required</mat-error
+          >
+          <mat-error *ngIf="this.firstFormGroup.get('ID').hasError('minlength')"
+            >ID must have 9 digits</mat-error
+          >
+          <mat-error
+            *ngIf="firstFormGroup.get('ID').errors?.['isUserNotIDValid']"
+            >ID is allready in use</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>username</mat-label>
+          <input
+            matInput
+            formControlName="username"
+            placeholder="Username"
+            required
+          />
+          <mat-error
+            *ngIf="this.firstFormGroup.get('username').hasError('required')"
+            >This input is required</mat-error
+          >
+          <mat-error
+            *ngIf="this.firstFormGroup.get('username').hasError('minlength')"
+            >Username must have at least 5 charcters</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            placeholder="Password"
+            [type]="hide ? 'password' : 'text'"
+            required
+          />
+          <mat-error
+            *ngIf="this.firstFormGroup.get('password').hasError('required')"
+            >This input is required</mat-error
+          >
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Confirm Password</mat-label>
+          <input
+            matInput
+            formControlName="confirmPassword"
+            placeholder="confirmPassword"
+            [type]="hide ? 'password' : 'text'"
+          />
+          <mat-error
+            *ngIf="
+            firstFormGroup.get('confirmPassword').errors?.['valuesDoNOtMatch']
+          "
+            >Passwords do not match</mat-error
+          >
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <div class="actions">
+          <button
+            mat-raised-button
+            matStepperNext
+            class="next"
+            color="accent"
+            (click)="goBackToLogin()"
+          >
+            Back To Login
+          </button>
+          <button mat-raised-button matStepperNext class="next" color="primary">
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <!-- FIRST FORM GROUP - STEP 1 -->
+
+    <!-- SECOND FORM GROUP - STEP 2 -->
+    <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>STEP - 2</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Select a city</mat-label>
+          <mat-select formControlName="city">
+            <mat-option value="Jerusalem">Jerusalem</mat-option>
+            <mat-option value="Tel Aviv">Tel Aviv</mat-option>
+            <mat-option value="Haifa">Haifa</mat-option>
+            <mat-option value="Ashdod">Ashdod</mat-option>
+            <mat-option value="Rishon LeZiyyon">Rishon LeZiyyon</mat-option>
+            <mat-option value="Petah Tiqwa">Petah Tiqwa</mat-option>
+            <mat-option value="Beersheba">Beersheba</mat-option>
+            <mat-option value="Netanya">Netanya</mat-option>
+            <mat-option value="Holon">Holon</mat-option>
+            <mat-option value="Bnei Brak">Bnei Brak</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="this.secondFormGroup.get('city').hasError('required')"
+            >This input is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Street</mat-label>
+          <input
+            matInput
+            formControlName="street"
+            placeholder="Street"
+            required
+          />
+          <mat-error
+            *ngIf="this.secondFormGroup.get('street').hasError('required')"
+            >This input is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" placeholder="Name" required />
+          <mat-error
+            *ngIf="this.secondFormGroup.get('name').hasError('required')"
+            >This input is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput
+            formControlName="lastName"
+            placeholder="Last Name"
+            required
+          />
+          <mat-error
+            *ngIf="this.secondFormGroup.get('lastName').hasError('required')"
+            >This input is required</mat-error
+          >
+        </mat-form-field>
+        <div class="actions">
+          <button mat-raised-button matStepperPrevious color="accent">
+            Back
+          </button>
+          <button
+            mat-raised-button
+            matStepperNext
+            color="primary"
+            (click)="register()"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <!-- SECOND FORM GROUP - STEP 2 -->
+
+    <!-- WELCOME USER - STEP 3 -->
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <div class="welcome">
+        <div class="welcome-img">
+          <img [src]="welcomeSrc" alt="" />
+        </div>
+
+        <div class="actions">
+          <button mat-raised-button (click)="stepper.reset()" color="accent">
+            Reset
+          </button>
+          <button mat-raised-button color="primary" (click)="goBackToLogin()">
+            go to login
+          </button>
+        </div>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

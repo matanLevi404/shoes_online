@@ -1,0 +1,202 @@
+CREATE DATABASE shoes_online;
+
+USE shoes_online;
+
+CREATE TABLE users (
+	id INT AUTO_INCREMENT,
+    role BOOLEAN DEFAULT 0,
+	name VARCHAR(255),
+    lastname VARCHAR(255),
+    username VARCHAR(255),
+    userID VARCHAR(225),
+    password VARCHAR(255),
+    city VARCHAR(225),
+    street VARCHAR(255),
+    last_purchase DATETIME,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE categories(
+	id INT AUTO_INCREMENT,
+    category VARCHAR(255),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE products(
+	id INT AUTO_INCREMENT,
+    name VARCHAR(225),
+    gender VARCHAR(225),
+    brand VARCHAR(225),
+    size VARCHAR(255),
+    color VARCHAR(225),
+    price INT,
+    on_sale BOOLEAN DEFAULT 0,
+    image VARCHAR(255),
+	category_id INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (category_id) REFERENCES categories(id)
+);
+
+CREATE TABLE carts(
+	id INT AUTO_INCREMENT,
+    created DATETIME DEFAULT now(),
+    user_id INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE items(
+	id INT AUTO_INCREMENT,
+    amount INT,
+    price INT,
+    product_id INT,
+    size INT,
+    cart_id INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (product_id) REFERENCES products (id),
+	FOREIGN KEY (cart_id) REFERENCES carts (id)
+);
+
+CREATE TABLE orders(
+	id INT AUTO_INCREMENT,
+    finalPrice INT,
+    city VARCHAR(255),
+    street VARCHAR(255),
+    arrivalTime DATETIME,
+    orderDate DATETIME DEFAULT now(),
+    digits VARCHAR(4),
+    user_id INT,
+    cart_id INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (cart_id) REFERENCES carts (id)
+);
+
+INSERT INTO categories (category)
+VALUES ("sneakers"),
+		("outing"),
+        ("boots"),
+        ("sport"),
+        ("elegance"),
+        ("flip flops"),
+        ("comfort"),
+        ("sandals"),
+        ("casual"),
+        ("walking");
+
+
+INSERT INTO products (name, gender, brand, size, color, price, on_sale, image, category_id)
+VALUES ("COURT LEGACY NN", "MEN'S", "Nike", "40-47", "white", 459, 1, "https://media.shoesonline.co.il/2022/01/men-Nike-COUTR-LEGACY-NN__DH3162-100.jpg", 1),
+("COURT LEGACY NN", "MEN'S", "Nike", "40-47", "black", 459, 1, "https://media.shoesonline.co.il/2022/01/men-Nike-COURT-LEGACY-NN__DH3162-001.jpg", 1),
+("WAFFLE TRAINER 2", "MEN'S", "Nike", "40-47", "blue/white", 559, 1, "https://media.shoesonline.co.il/2021/12/nike-buty-waffle-trainer-2-dh1349-401-7fe84a77.jpg", 1),
+("WAFFLE TRAINER 2", "MEN'S", "Nike", "40-47", "black", 559, 1, "https://media.shoesonline.co.il/2021/10/nike-buty-waffle-trainer-2-dh1349-001-a7de9464.jpg", 1),
+("VENTURE RUNNER SUEDE", "MEN'S", "Nike", "40-47", "black/white", 449, 1, "https://media.shoesonline.co.il/2021/10/VENTURE-RUNNER-SUEDE-Nike-men__CQ4557-001.jpg", 1),
+("VENTURE RUNNER SUEDE", "MEN'S", "Nike", "40-47", "blue", 449, 1, "https://media.shoesonline.co.il/2021/10/VENTURE-RUNNER-SUEDE-Nike-men__CQ4557-400.jpg", 1),
+("Originals Superstar Vegan", "MEN'S/WOMEN'S", "Adidas", "35-49", "white", 299, 1, "https://media.shoesonline.co.il/2020/09/unisex-Adidas-Originals-Superstar-Vegan__FW2295-555x555.jpg", 1),
+("Originals Superstar Vegan", "MEN'S/WOMEN'S", "Adidas", "35-49", "black", 299, 1, "https://media.shoesonline.co.il/2020/09/unisex-Adidas-Originals-Superstar-Vegan__FW2296-1.jpg", 1),
+("VS PACE", "MEN'S", "Adidas", "39-49", "black", 349, 1, "https://media.shoesonline.co.il/2019/12/d65a1b845fc4fb3bf31939ba797cc28c.jpg", 1),
+("VS PACE", "MEN'S", "Adidas", "39-49", "black/white", 349, 1, "https://media.shoesonline.co.il/2019/12/8e3fa674fbd205075a00ce5d99fc64d7.jpg", 1),
+("VS PACE", "MEN'S", "Adidas", "39-49", "white", 349, 1, "https://media.shoesonline.co.il/2018/09/VS-PACE-DA9997.jpg", 1),
+("VS PACE", "MEN'S", "Adidas", "39-49", "red", 349, 1, "https://media.shoesonline.co.il/2021/12/adidas-buty-vs-pace-h02019-eb1da783.jpg", 1),
+("V-10 Leather Extra", "MEN'S/WOMEN'S", "Veja", "36-48", "white", 649, 1, "https://media.shoesonline.co.il/2022/02/unisex-Veja-V-10-Leather-Extra__VX020005-555x555.jpg", 1),
+("Marlin V-Knit", "MEN'S", "Veja", "40-47", "green", 1185, 1, "https://media.shoesonline.co.il/2022/02/men-Veja-Marlin-V-Knit__LT102603-555x555.jpg", 1),
+("Marlin V-Knit", "MEN'S", "Veja", "40-47", "black", 1185, 1, "https://media.shoesonline.co.il/2022/03/Marlin-V-Knit-Veja-men__LT102456.jpg", 1),
+("V-12 Leather", "MEN'S", "Veja", "40-47", "white/green", 649, 1, "https://media.shoesonline.co.il/2021/03/men-Veja-V-12-Leather__XD022336-1.jpg", 1),
+("V-12 Leather", "MEN'S", "Veja", "40-47", "white/red", 649, 1, "https://media.shoesonline.co.il/2021/03/ita_pl_Veja-V-12-Leather-XD021955-1021502_1.jpg", 1),
+("ML515", "MEN'S", "New Balance", "41-45", "red", 325, 1, "https://media.shoesonline.co.il/2022/01/men-New-Balance-ML515__ML515HG3.jpg", 1),
+("MS237", "MEN'S", "New Balance", "40-47", "beige", 229, 1, "https://media.shoesonline.co.il/2022/01/ita_pm_New-Balance-MS237UL1-1034063_1.jpg", 1),
+("MS237", "MEN'S", "New Balance", "40-47", "azure", 229, 1, "https://media.shoesonline.co.il/2022/01/ita_pl_New-Balance-MS237UE1-1033541_1.jpg", 1),
+("MS237", "MEN'S", "New Balance", "40-47", "white", 229, 1, "https://media.shoesonline.co.il/2022/01/ita_pl_New-Balance-MS237CB-1023196_1.jpg", 1),
+("MS327", "MEN'S", "New Balance", "40-49", "yellow", 359, 1, "https://media.shoesonline.co.il/2021/12/Balance-New-Balance-men__MS327LI1-555x555.jpg", 1),
+("MS327", "MEN'S", "New Balance", "40-49", "red/blue", 359, 1, "https://media.shoesonline.co.il/2021/11/ita_pm_New-Balance-MS327HE1-1031100_1.jpg", 1),
+("VEYEBWW", "MEN'S/WOMEN'S", "Vans", "35-47", "white/black", 285, 0, "https://media.shoesonline.co.il/2021/11/unisex-Vans-VEYEBWW__VEYEBWW-555x555.jpg", 1),
+("Authentic 44 Dx", "MEN'S/WOMEN'S", "Vans", "35-47", "black", 295, 0, "https://media.shoesonline.co.il/2021/07/unisex-Vans-Authentic-44-Dx__VN0A38ENSTZ-1-555x555.jpg", 1),
+("Authentic", "MEN'S/WOMEN'S", "Vans", "34-50", "white", 379, 0, "https://media.shoesonline.co.il/2021/11/Authentic-Vans-unisex__VN0A54F2104-555x555.jpg", 1),
+("Authentic", "MEN'S/WOMEN'S", "Vans", "34-50", "red", 379, 0, "https://media.shoesonline.co.il/2020/04/Authentic-Vans-unisex__VQER5U8.jpg", 1),
+("Authentic", "MEN'S/WOMEN'S", "Vans", "34-50", "yellow/blue", 379, 0, "https://media.shoesonline.co.il/2019/08/unisex-Vans-Authentic__VA2Z5IWNY.jpg", 1);
+
+
+INSERT INTO products (name, gender, brand, size, color, price, on_sale, image, category_id)
+VALUES ("Euro Sprint Mid Hiker", "MEN'S", "Timberland", "40-49", "brown/black", 609, 0, "https://media.shoesonline.co.il/2022/01/Euro-Sprint-Mid-Hiker-Timberland-men__A2GKS-555x555.jpg", 2),
+("Euro Sprint Mid Hiker", "MEN'S", "Timberland", "40-49", "black", 609, 0, "https://media.shoesonline.co.il/2022/01/Euro-Sprint-Mid-Hiker-Timberland-men__A2K8Z.jpg", 2),
+("Euro Sprint Mid Hiker", "MEN'S", "Timberland", "40-49", "brown", 609, 0, "https://media.shoesonline.co.il/2022/01/Euro-Sprint-Mid-Hiker-Timberland-men__A2H76.jpg", 2),
+("Terrex Hikster", "MEN'S", "Adidas", "40-48", "black", 519, 0, "https://media.shoesonline.co.il/2021/05/Terrex-Hikster-Adidas-men__EH3534-555x555.jpg", 2),
+("Terrex Trailmaker Primegreen", "MEN'S", "Adidas", "39-48", "blue", 369, 1, "https://media.shoesonline.co.il/2021/09/men-Adidas-Terrex-Trailmaker-Primegreen__S29058-1-555x555.jpg", 2),
+("Terrex Voyager 21", "MEN'S", "Adidas", "36-49", "black", 369, 1, "https://media.shoesonline.co.il/2021/05/men-Adidas-Terrex-Voyager-21__FW9399-555x555.jpg", 2),
+("Terrex Voyager 21", "MEN'S", "Adidas", "36-49", "blue", 369, 1, "https://media.shoesonline.co.il/2021/05/men-Adidas-Terrex-Voyager-21__FW9404-1.jpg", 2),
+("Terrex Voyager 21", "MEN'S", "Adidas", "36-49", "blue/red", 369, 1, "https://media.shoesonline.co.il/2021/05/men-Adidas-Terrex-Voyager-21__FW9400-1.jpg", 2),
+("585", "MEN'S/WOMEN'S", "Blundstone", "36-48", "brown", 439, 0, "https://media.shoesonline.co.il/2015/07/blm585-b17-3.jpg", 2),
+("561", "MEN'S/WOMEN'S", "Blundstone", "35-48", "brown", 439, 0, "https://media.shoesonline.co.il/2014/11/blundstone-561-1_18-555x555.jpg", 2),
+("562", "MEN'S/WOMEN'S", "Blundstone", "36-48", "brown", 439, 0, "https://media.shoesonline.co.il/2016/10/143345929_max-555x555.jpg", 2),
+("TREKKINGOWE SOFTSHELL", "MEN'S", "HI MOUNTAIN", "42-45", "black", 199, 0, "https://media.shoesonline.co.il/2021/12/men-HI-MOUNTAIN-TREKKINGOWE-SOFTSHELL__CSM-03CZARNE.jpg", 2),
+("TREKKINGOWE", "MEN'S", "HI MOUNTAIN", "42-45", "black", 399, 1, "https://media.shoesonline.co.il/2021/12/hi-mountain-buty-zamszowe-buty-trekkingowe-csm-02-szare-361dda40.jpg", 2),
+("TREKKINGOWE", "MEN'S", "HI MOUNTAIN", "42-45", "brown", 399, 1, "https://media.shoesonline.co.il/2021/12/men-HI-MOUNTAIN-TREKKINGOWE__CSM-01MIODOWE.jpg", 2),
+("Outline Prism", "MEN'S", "Salomon", "40-48", "black", 399, 1, "https://media.shoesonline.co.il/2020/07/men-Salomon-Outline-Prism__411207-555x555.jpg", 2),
+("X Reveal", "MEN'S", "Salomon", "40-48", "black", 379, 0, "https://media.shoesonline.co.il/2020/03/X-Reveal-Salomon-men__410420-555x555.jpg", 2),
+("X Reveal", "MEN'S", "Salomon", "40-48", "black/white", 379, 0, "https://media.shoesonline.co.il/2020/02/men-Salomon-X-Reveal__409726.jpg", 2),
+("OUTline Prism GTX Gore-Tex", "MEN'S", "Salomon", "41-46", "beige", 469, 0, "https://media.shoesonline.co.il/2021/03/men-Salomon-OUTline-Prism-GTX__413046-555x555.jpg", 2),
+("OUTline Prism GTX Gore-Tex", "MEN'S", "Salomon", "41-46", "black", 469, 0, "https://media.shoesonline.co.il/2021/03/men-Salomon-OUTline-Prism-GTX-Gore-Tex__411203.jpg", 2),
+("Moab Speed", "MEN'S", "Merrell", "40-49", "black", 449, 0, "https://media.shoesonline.co.il/2021/05/men-Merrell-Moab-Speed__J135399-555x555.jpg", 2),
+("Moab Speed", "MEN'S", "Merrell", "40-49", "green", 449, 0, "https://media.shoesonline.co.il/2021/05/men-Merrell-Moab-Speed__J135403-1.jpg", 2),
+("Catalyst Storm", "MEN'S/WOMEN'S", "Merrell", "36-48", "orange", 455, 0, "https://media.shoesonline.co.il/2021/10/unisex-Merrell-Catalyst-Storm__J2002785-1-555x555.jpg", 2),
+("Catalyst Storm", "MEN'S/WOMEN'S", "Merrell", "36-48", "black", 455, 0, "https://media.shoesonline.co.il/2021/10/unisex-Merrell-Catalyst-Storm__J2002781.jpg", 2),
+("Long Sky Sewn", "MEN'S", "Merrell", "40-48", "black", 465, 0, "https://media.shoesonline.co.il/2021/05/men-Merrell-Long-Sky-Sewn__J002579-555x555.jpg", 2),
+("Long Sky Sewn", "MEN'S", "Merrell", "40-48", "black/gray", 465, 0, "https://media.shoesonline.co.il/2021/05/men-Merrell-Long-Sky-Sewn__J002581-1.jpg", 2);
+
+
+INSERT INTO products (name, gender, brand, size, color, price, on_sale, image, category_id)
+VALUES ("BOOTFLEX 001", "MEN'S", "Astroflex", "40-46", "green", 725, 0, "https://media.shoesonline.co.il/2022/01/men-Astroflex-BOOTFLEX-001__BOOTFLEX001FORESTA-1-555x555.jpg", 3),
+("BOOTFLEX 001", "MEN'S", "Astroflex", "40-46", "black", 725, 0, "https://media.shoesonline.co.il/2022/01/men-Astroflex-BOOTFLEX-001__BOOTFLEX001NERO-1.jpg", 3),
+("BOOTFLEX 001", "MEN'S", "Astroflex", "40-46", "beige", 725, 0, "https://media.shoesonline.co.il/2022/01/men-Astroflex-BOOTFLEX-001__BOOTFLEX001WHISKEY-1.jpg", 3),
+("Premium 6 In Waterproof Boot", "MEN'S", "Timberland", "41-47", "black", 855, 0, "https://media.shoesonline.co.il/2022/01/men-Timberland-Premium-6-In-Waterproof-Boot__A2KEN-555x555.jpg", 3),
+("Premium 6 In Waterproof Boot", "MEN'S", "Timberland", "41-47", "black/red", 849, 0, "https://media.shoesonline.co.il/2022/01/Premium-6-In-Waterproof-Boot-Timberland-men__A2KEC.jpg", 3),
+("6 in Waterproof Boot", "MEN'S", "Timberland", "39-49", "brown", 835, 0, "https://media.shoesonline.co.il/2022/01/ita_pl_Timberland-6-in-Waterproof-Boot-A2GHN-1033763_1-555x555.jpg", 3),
+("6 in Waterproof Boot", "MEN'S", "Timberland", "39-49", "brown", 799, 0, "https://media.shoesonline.co.il/2022/01/ita_pl_Timberland-6-in-Waterproof-Boot-A2GHY-1033760_1.jpg", 3),
+("Heritage 6 In Waterproof", "MEN'S", "Timberland", "40-49", "brown", 849, 0, "https://media.shoesonline.co.il/2021/11/men-Timberland-Heritage-6-In-Waterproof-Boot__A2GYX-555x555.jpg", 3),
+("Heritage 6 In Waterproof", "MEN'S", "Timberland", "40-49", "gray", 849, 0, "https://media.shoesonline.co.il/2022/01/Heritage-6-In-Waterproof-Boot-Timberland-men__A2KC5.jpg", 3),
+("Heritage 6 In Waterproof", "MEN'S", "Timberland", "40-49", "black", 849, 0, "https://media.shoesonline.co.il/2021/11/men-Timberland-Heritage-6-In-Waterproof-Boot__A2GZ9-1.jpg", 3),
+("2976 Valor Waterproof", "MEN'S", "DR Martens", "40-47", "black", 779, 0, "https://media.shoesonline.co.il/2021/12/men-DR-Martens-2976-Valor-Waterproof__27142001-555x555.jpg", 3),
+("1460 Pascal Bex", "MEN'S", "DR Martens", "36-46", "brown", 779, 0, "https://media.shoesonline.co.il/2021/11/men-DR-Martens-Martens-1460-Pascal-Bex__26981220-555x555.jpg", 3),
+("1460 PASCAL AMBASSADOR", "MEN'S/WOMEN'S", "DR Martens", "36-46", "black", 809, 0, "https://media.shoesonline.co.il/2021/10/381c5b306adfcfe47d2eef3bc09385b3-src_uqx8pjwm3aadzmrt.jpg", 3),
+("Hacker 5", "MEN'S", "NOBRAND", "39-46", "black", 649, 0, "https://media.shoesonline.co.il/2021/10/hacker-black-12777-1_1-555x555.jpg", 3),
+("Hacker 5", "MEN'S", "NOBRAND", "39-46", "brown", 649, 0, "https://media.shoesonline.co.il/2021/10/hacker-taupe-12777-1_1.jpg", 3),
+("Wring", "MEN'S", "NOBRAND", "39-46", "black", 699, 0, "https://media.shoesonline.co.il/2021/10/wring-14734-black-1_1-555x555.jpg", 3),
+("Wring", "MEN'S", "NOBRAND", "39-46", "brown", 699, 0, "https://media.shoesonline.co.il/2021/10/wring-cognac-14734-1_1.jpg", 3),
+("Emerge", "MEN'S", "NOBRAND", "39-46", "brown", 649, 0, "https://media.shoesonline.co.il/2021/10/emerge-taupe-13990-1_1-555x555.jpg", 3),
+("Emerge", "MEN'S", "NOBRAND", "39-46", "black", 649, 0, "https://media.shoesonline.co.il/2021/10/emerge-black-13990-1_1.jpg", 3),
+("H4Z21 OBMH257", "MEN'S", "4F", "40-46", "brown", 445, 0, "https://media.shoesonline.co.il/2021/11/men-4F-H4Z21-OBMH257__H4Z21OBMH257OLIWKA-1.jpg", 3),
+("H4Z21 OBMH257", "MEN'S", "4F", "40-46", "gray", 445, 0, "https://media.shoesonline.co.il/2021/11/men-4F-H4Z21-OBMH257__H4Z21OBMH257SZARY-1.jpg", 3),
+("H4Z21 OBMH251", "MEN'S", "4F", "40-46", "black", 409, 0, "https://media.shoesonline.co.il/2021/11/men-4F-H4Z21-OBMH251__H4Z21OBMH251CZARNY.jpg", 3),
+("H4Z21 OBMH251", "MEN'S", "4F", "40-46", "brown", 409, 0, "https://media.shoesonline.co.il/2021/11/men-4F-H4Z21-OBMH251__H4Z21OBMH251OLIWKA-1.jpg", 3),
+("H4Z21 OBMH251", "MEN'S", "4F", "40-46", "blue", 409, 0, "https://media.shoesonline.co.il/2021/11/men-4F-H4Z21-OBMH251__H4Z21OBMH251GRANAT-1.jpg", 3),
+("H4Z21 OBMH258", "MEN'S", "4F", "40-46", "yellow", 445, 0, "https://media.shoesonline.co.il/2021/11/men-4F-H4Z21-OBMH258__H4Z21OBMH258BEZ.jpg", 3),
+("H4Z21 OBMH258", "MEN'S", "4F", "40-46", "black", 445, 0, "https://media.shoesonline.co.il/2021/11/men-4F-H4Z21-OBMH258__H4Z21OBMH258CZARNY-1.jpg", 3),
+("H4Z21 OBMH258", "MEN'S", "4F", "40-46", "blue", 445, 0, "https://media.shoesonline.co.il/2021/11/men-4F-H4Z21-OBMH258__H4Z21OBMH258GRANAT-1.jpg", 3);
+
+
+
+INSERT INTO products (name, gender, brand, size, color, price, on_sale, image, category_id)
+VALUES ("Climacool Ventania", "MEN'S", "Adidas", "39-49", "black/white", 429, 0, "https://media.shoesonline.co.il/2021/03/men-Adidas-Climacool-Ventania__FX7351-1-555x555.jpg", 4),
+("Climacool Ventania", "MEN'S", "Adidas", "39-49", "black/white/gray", 429, 0, "https://media.shoesonline.co.il/2021/03/pol_pl_Buty-adidas-Climacool-Ventania-G54904-32576_1.jpg", 4),
+("Alphatorsion", "MEN'S", "Adidas", "41-46", "black/white", 399, 0, "https://media.shoesonline.co.il/2021/11/7bb2c481fabc34c55a72f3f5a8685a64033dc131_mkp0633773dummy_1.jpg", 4),
+("Alphatorsion", "MEN'S", "Adidas", "41-46", "black", 399, 0, "https://media.shoesonline.co.il/2021/11/664e17abc8875fa7a9d4b97dd3582518.jpg", 4),
+("Kaptir Super", "MEN'S", "Adidas", "39-49", "white", 369, 0, "https://media.shoesonline.co.il/2021/04/Kaptir-Super-Adidas-men__FZ2871-555x555.jpg", 4),
+("Kaptir Super", "MEN'S", "Adidas", "39-49", "yellow", 369, 0, "https://media.shoesonline.co.il/2021/01/men-Adidas-Kaptir-Super__FZ2859.jpg", 4),
+("Tiger Gel-Lyte Runner", "MEN'S", "Asics", "41-46", "green", 299, 0, "https://media.shoesonline.co.il/2020/11/gellytrnnraggrn1-555x555.jpg", 4),
+("Gel Kayano Trainer", "MEN'S", "Asics", "41-46", "blue", 299, 0, "https://media.shoesonline.co.il/2018/02/H621N-4950_sivasdescalzo-AsicsTiger-Gel-kayano-trainer-EVO-monaco-blue-H621N-4950-1.jpg", 4),
+("ASICS GEL-QUANTUM 180 4", "MEN'S", "Asics", "40-47", "gray/white", 429, 0, "https://media.shoesonline.co.il/2022/01/1021a104-020-555x555.jpg", 4),
+("AIR ZOOM STRUCTURE 23", "MEN'S", "Nike", "42-47", "blue", 649, 1, "https://media.shoesonline.co.il/2021/07/cz6720-402_1_1.jpg", 4),
+("DOWNSHIFTER 9", "MEN'S", "Nike", "40-49", "red/gray", 449, 1, "https://media.shoesonline.co.il/2021/10/1-zoom-desktop-5.jpg", 4),
+("Air Max Motion 2", "MEN'S", "Nike", "40-48", "red/white/black", 599, 1, "https://media.shoesonline.co.il/2019/04/NI464AMDNBH5_7830538_2_v1.jpg", 4),
+("Running Cloudswift", "MEN'S", "On", "40-48", "beige", 649, 1, "https://media.shoesonline.co.il/2021/11/men-On-Running-Cloudswift__4199582WhitFlame-555x555.jpg", 4),
+("Running Cloudswift", "MEN'S", "On", "40-48", "black", 649, 1, "https://media.shoesonline.co.il/2021/11/men-On-Running-Cloudswift__4199585BlackRock-2.jpg", 4),
+("Cloudnova", "MEN'S", "On", "40-47", "white", 749, 1, "https://media.shoesonline.co.il/2021/09/men-On-Cloudnova__2699118ALLWHITE-555x555.jpg", 4),
+("Running Cloudnova", "MEN'S", "On", "40-48", "white/black", 799, 1, "https://media.shoesonline.co.il/2021/09/Running-Cloudnova-On-men__2699265BLACKWHITE-555x555.jpg", 4),
+("Altra Timp 3", "MEN'S", "ALTRA", "41-48", "black/blue", 749, 0, "https://media.shoesonline.co.il/2021/07/New-Project664-510x510.jpg", 4),
+("Provision 5", "MEN'S", "ALTRA", "41-46", "black/white", 699, 0, "https://media.shoesonline.co.il/2021/07/New-Project849-555x555.jpg", 4),
+("Energen Lite", "MEN'S", "Reebok", "40-47", "blue/white", 349, 1, "https://media.shoesonline.co.il/2021/08/reebok-buty-energen-lite-s42774-9af713df.jpg", 4),
+("LITE PLUS 3.0", "MEN'S", "Reebok", "41-46", "black/white", 219, 0, "https://media.shoesonline.co.il/2021/12/reebok-buty-lite-plus-3-0-gy0159-40864831.jpg", 4),
+("LITE PLUS 3.0", "MEN'S", "Reebok", "41-46", "black/blue", 219, 0, "https://media.shoesonline.co.il/2021/12/reebok-buty-lite-plus-3-0-g57541-e4209340.jpg", 4),
+("Zig Dynamica 2.0", "MEN'S", "Reebok", "39-47", "gray", 329, 0, "https://media.shoesonline.co.il/2021/08/Zig-Dynamica-2.0-Reebok-men__H00922-555x555.jpg", 4),
+("Print Lite Rush 2", "MEN'S", "Reebok", "39-50", "gray", 315, 0, "https://media.shoesonline.co.il/2022/01/0000200880310_02_kt-555x555.jpg", 4);
+

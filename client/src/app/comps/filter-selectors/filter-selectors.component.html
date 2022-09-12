@@ -1,0 +1,62 @@
+<div class="section selectors">
+  <mat-form-field appearance="fill">
+    <mat-label>Brands</mat-label>
+    <mat-select [formControl]="brands" multiple>
+      <mat-select-trigger>
+        {{ brands.value ? brands.value[0] : "" }}
+        <span
+          *ngIf="brands.value?.length > 1"
+          class="example-additional-selection"
+        >
+          (+{{ brands.value.length - 1 }}
+          {{ brands.value?.length === 2 ? "other" : "others" }})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let brand of brandsList" [value]="brand">{{
+        brand
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Sizes</mat-label>
+    <mat-select [formControl]="sizes" multiple>
+      <mat-select-trigger>
+        {{ sizes.value ? sizes.value[0] : "" }}
+        <span
+          *ngIf="sizes.value?.length > 1"
+          class="example-additional-selection"
+        >
+          (+{{ sizes.value.length - 1 }}
+          {{ sizes.value?.length === 2 ? "other" : "others" }})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let size of sizesList" [value]="size">{{
+        size
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Colors</mat-label>
+    <mat-select [formControl]="colors" multiple>
+      <mat-select-trigger>
+        {{ colors.value ? colors.value[0] : "" }}
+        <span
+          *ngIf="colors.value?.length > 1"
+          class="example-additional-selection"
+        >
+          (+{{ colors.value.length - 1 }}
+          {{ colors.value?.length === 2 ? "other" : "others" }})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let color of colorsList" [value]="color">{{
+        color
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="button" (click)="onClick()">
+    Filter
+  </button>
+</div>

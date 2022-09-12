@@ -1,0 +1,51 @@
+mat-card-header-text {
+  border: 1px solid;
+}
+
+mat-card-subtitle {
+  font-size: 1rem;
+  color: #000;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+mat-card-title span {
+  font-size: 13px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-error {
+  margin-bottom: 10px;
+}
+
+.login {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.signup {
+  width: 100%;
+  margin-bottom: 0px;
+}
+
+/* ------------- media queries ------------ */
+@media screen and (max-width: 950px) {
+  mat-form-field {
+    font-size: 11.56px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+}
+/* ------------- media queries ------------ */

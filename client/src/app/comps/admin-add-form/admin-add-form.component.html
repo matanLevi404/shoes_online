@@ -1,0 +1,142 @@
+<div class="add-product-form">
+  <mat-card class="example-card">
+    <div class="flexer">
+      <form class="example-form" [formGroup]="firstForm">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput [formControlName]="'name'" />
+          <mat-error *ngIf="this.firstForm.get('name').hasError('required')"
+            >This input is required</mat-error
+          >
+        </mat-form-field>
+        <div class="range">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Brand</mat-label>
+            <input matInput [formControlName]="'brand'" />
+            <mat-error *ngIf="this.firstForm.get('brand').hasError('required')"
+              >This input is required</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Category</mat-label>
+            <mat-select [formControlName]="'category_id'">
+              <mat-option value="1">Sneakers</mat-option>
+              <mat-option value="2">Outing</mat-option>
+              <mat-option value="3">Boots</mat-option>
+              <mat-option value="4">Sport</mat-option>
+              <mat-option value="5">Elegance</mat-option>
+              <mat-option value="6">Filp Flops</mat-option>
+              <mat-option value="7">Comfort</mat-option>
+              <mat-option value="8">Sandals</mat-option>
+              <mat-option value="9">Casual</mat-option>
+              <mat-option value="10">Walking</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="this.firstForm.get('category_id').hasError('required')"
+              >This input is required</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="range">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>minSize</mat-label>
+            <input
+              matInput
+              [formControlName]="'minSize'"
+              type="number"
+              min="35"
+              max="50"
+            />
+            <mat-error
+              *ngIf="this.firstForm.get('minSize').hasError('required')"
+              >This input is required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>maxSize</mat-label>
+            <input
+              matInput
+              [formControlName]="'maxSize'"
+              type="number"
+              min="35"
+              max="50"
+            />
+            <mat-error
+              *ngIf="this.firstForm.get('maxSize').hasError('required')"
+              >This input is required</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Image</mat-label>
+          <input matInput [formControlName]="'image'" />
+          <mat-error *ngIf="this.firstForm.get('image').hasError('required')"
+            >This input is required</mat-error
+          >
+        </mat-form-field>
+      </form>
+
+      <form class="example-form" [formGroup]="secondForm">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Color</mat-label>
+          <mat-select [formControlName]="'color'">
+            <mat-option value="black">black</mat-option>
+            <mat-option value="white">white</mat-option>
+            <mat-option value="gray">gray</mat-option>
+            <mat-option value="beige">beige</mat-option>
+            <mat-option value="green">green</mat-option>
+            <mat-option value="orange">orange</mat-option>
+            <mat-option value="yellow">yellow</mat-option>
+            <mat-option value="red">red</mat-option>
+            <mat-option value="brown">brown</mat-option>
+          </mat-select>
+          <mat-error *ngIf="this.secondForm.get('color').hasError('required')"
+            >This input is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Price</mat-label>
+          <input matInput [formControlName]="'price'" type="number" />
+          <mat-error *ngIf="this.secondForm.get('price').hasError('required')"
+            >This input is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Sale</mat-label>
+          <mat-select [formControlName]="'on_sale'">
+            <mat-option value="YES">YES</mat-option>
+            <mat-option value="NO">NO</mat-option>
+          </mat-select>
+          <mat-error *ngIf="this.secondForm.get('on_sale').hasError('required')"
+            >This input is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Gender</mat-label>
+          <mat-select [formControlName]="'gender'">
+            <mat-option value="MEN'S">MEN'S</mat-option>
+            <mat-option value="WOMEN'S">WOMEN'S</mat-option>
+            <mat-option value="MES'S/WOMEN'S">MEN'S/WOMEN'S</mat-option>
+          </mat-select>
+          <mat-error *ngIf="this.secondForm.get('gender').hasError('required')"
+            >This input is required</mat-error
+          >
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="actions">
+      <button mat-raised-button color="primary" (click)="addProductToStore()">
+        Add product to store
+      </button>
+      <button mat-raised-button color="primary" (click)="backToStore()">
+        Back to store
+      </button>
+    </div>
+  </mat-card>
+</div>

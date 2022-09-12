@@ -1,0 +1,100 @@
+<div class="card-container" (click)="triggerPopUp()">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <h2>{{ productDetails.brand }}</h2>
+    </mat-card-header>
+    <img
+      mat-card-image
+      [src]="productDetails.image"
+      alt="Photo of a Shiba Inu"
+    />
+    <div class="price">
+      <span class="sale-price">{{ productDetails.price }}$</span>
+      <span *ngIf="productDetails.on_sale == 1" class="initial-price"
+        >{{ initialPrice }} $</span
+      >
+    </div>
+    <strong>{{ productDetails.name }}</strong>
+    <h4>{{ productDetails.gender }}</h4>
+    <span *ngIf="productDetails.on_sale == 1">
+      <span class="on-sale">On Sale!</span>
+      <span class="reduction">-20%</span>
+    </span>
+
+    <span class="new" *ngIf="productDetails.on_sale != 1">New!</span>
+    <mat-card-actions> </mat-card-actions>
+  </mat-card>
+</div>
+
+<div class="pop-up" *ngIf="isPopUpOpen">
+  <div class="fromPopUp">
+    <button
+      (click)="triggerPopUp()"
+      mat-mini-fab
+      color="primary"
+      aria-label="Example icon button with a menu icon"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <app-admin-popup
+      *ngIf="isAdmin"
+      [productDetails]="productDetails"
+      [availableSizes]="availableSizes"
+      [initialPrice]="initialPrice"
+    ></app-admin-popup>
+    <mat-card class="example-card" *ngIf="!isAdmin">
+      <img
+        mat-card-image
+        [src]="productDetails.image"
+        alt="Photo of a Shiba Inu"
+      />
+      <div class="price">
+        <span class="sale-price">{{ productDetails.price }}$</span>
+        <span *ngIf="productDetails.on_sale == 1" class="initial-price"
+          >{{ initialPrice }} $</span
+        >
+      </div>
+      <strong>{{ productDetails.name }}</strong>
+      <h4>{{ productDetails.gender }}</h4>
+      <span *ngIf="productDetails.on_sale == 1">
+        <span class="on-sale">On Sale!</span>
+        <span class="reduction">-20%</span>
+      </span>
+
+      <span class="new" *ngIf="productDetails.on_sale != 1">New!</span>
+      <mat-card-actions>
+        <mat-form-field appearance="fill" style="font-size: 10px">
+          <mat-label>Sizes</mat-label>
+          <mat-select name="size" #sizeInp>
+            <mat-option *ngFor="let size of availableSizes" [value]="size">
+              {{ size }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field
+          class="example-full-width"
+          appearance="fill"
+          style="font-size: 10px"
+        >
+          <mat-label>Amount</mat-label>
+          <input
+            #amountInp
+            type="number"
+            matInput
+            placeholder="Amount"
+            value="Amount"
+            min="0"
+          />
+        </mat-form-field>
+        <button
+          class="add-to-cart"
+          mat-raised-button
+          color="primary"
+          (click)="onClickAddToCart(amountInp.value, sizeInp.value)"
+        >
+          ADD TO CART
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

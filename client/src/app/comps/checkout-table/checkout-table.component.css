@@ -1,0 +1,28 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.highlight {
+  background-color: rgba(0, 128, 0, 0.537);
+}
+
+.checkout-table-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.filter {
+  width: 30%;
+  background-color: rgb(210, 210, 210);
+  font-size: 10px;
+}
+
+.back-to-shop {
+  height: 20%;
+}

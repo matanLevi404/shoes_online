@@ -1,0 +1,17 @@
+mat-drawer {
+  display: none;
+}
+
+/* ------------- media queries ------------ */
+@media screen and (max-width: 950px) {
+  mat-drawer {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  mat-drawer {
+    display: block;
+  }
+}
+/* ------------- media queries ------------ */

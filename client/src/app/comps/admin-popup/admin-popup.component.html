@@ -1,0 +1,81 @@
+<mat-card class="example-card">
+  <img mat-card-image [src]="productDetails.image" alt="Photo of a Shiba Inu" />
+  <form class="example-form" [formGroup]="firstForm">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput [formControlName]="'name'" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Gender</mat-label>
+      <mat-select [formControlName]="'gender'">
+        <mat-option value="MEN'S">MEN'S</mat-option>
+        <mat-option value="WOMEN'S">WOMEN'S</mat-option>
+        <mat-option value="MES'S/WOMEN'S">MEN'S/WOMEN'S</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>minSize</mat-label>
+      <input
+        matInput
+        [formControlName]="'minSize'"
+        type="number"
+        min="35"
+        max="50"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>maxSize</mat-label>
+      <input
+        matInput
+        [formControlName]="'maxSize'"
+        type="number"
+        min="35"
+        max="50"
+      />
+    </mat-form-field>
+  </form>
+
+  <form class="example-form" [formGroup]="secondForm">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Color</mat-label>
+      <mat-select [formControlName]="'color'">
+        <mat-option [value]="productDetails.color">{{
+          productDetails.color
+        }}</mat-option>
+        <mat-option value="black">black</mat-option>
+        <mat-option value="white">white</mat-option>
+        <mat-option value="gray">gray</mat-option>
+        <mat-option value="beige">beige</mat-option>
+        <mat-option value="green">green</mat-option>
+        <mat-option value="orange">orange</mat-option>
+        <mat-option value="yellow">yellow</mat-option>
+        <mat-option value="red">red</mat-option>
+        <mat-option value="brown">brown</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Price</mat-label>
+      <input matInput [formControlName]="'price'" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Sale</mat-label>
+      <mat-select [formControlName]="'on_sale'">
+        <mat-option value="YES">YES</mat-option>
+        <mat-option value="NO">NO</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Image</mat-label>
+      <input matInput [formControlName]="'image'" />
+    </mat-form-field>
+  </form>
+
+  <button mat-raised-button color="primary" (click)="editProduct()">
+    Edit Product
+  </button>
+</mat-card>
